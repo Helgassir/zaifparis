@@ -1,0 +1,655 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cairo:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold:        #D8C29D;
+    --gold-dark:   #B7A89A;
+    --ink:         #111111;
+    --bg:          #F6F1E9;
+    --bg-light:    #EEE8E1;
+    --bg-white:    #FDFCF9;
+    --text:        #111111;
+    --text-muted:  #8a7f75;
+    --border:      #D8C29D;
+    --border-soft: #E8E2D9;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Jost', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+}
+
+/* ── Hero ── */
+.hero {
+    background: var(--ink);
+    color: white;
+    padding: 70px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.hero-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.hero-brand .brand-name {
+    display: block;
+    font-size: 4em;
+    color: var(--gold);
+}
+
+.hero-brand .brand-city {
+    display: block;
+    font-size: 1.35em;
+    color: var(--gold-dark);
+    letter-spacing: 0.55em;
+    margin-bottom: 28px;
+}
+
+.hero-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 24px;
+    opacity: 0.7;
+}
+
+.hero p {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85em;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ── Container ── */
+.container {
+    max-width: 680px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.form-wrapper {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    padding: 50px 50px 40px;
+    box-shadow: 0 8px 40px rgba(17, 17, 17, 0.06);
+}
+
+/* ── Progress ── */
+.progress-bar {
+    background: var(--bg-light);
+    height: 1px;
+    margin-bottom: 36px;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.6s ease;
+    width: 0%;
+}
+
+/* ── Section indicator ── */
+.section-indicator {
+    text-align: center;
+    font-size: 0.7em;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* ── Section ── */
+.form-section {
+    display: none;
+    animation: fadeUp 0.45s ease-out;
+}
+
+.form-section.active {
+    display: block;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.section-badge {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65em;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 0;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.85em;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+}
+
+/* ── Sub-section ── */
+.sub-section {
+    margin-bottom: 36px;
+}
+
+.sub-section h3 {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68em;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+/* ── Question ── */
+.question {
+    margin-bottom: 28px;
+}
+
+.question-label {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05em;
+    font-weight: 500;
+    margin-bottom: 14px;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+}
+
+.question-label .emoji-inline {
+    margin-right: 8px;
+    font-size: 0.9em;
+    opacity: 0.75;
+}
+
+/* ── Options ── */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 13px 16px;
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: var(--bg-white);
+    flex-wrap: wrap;
+}
+
+.option:hover {
+    border-color: var(--gold);
+    background: var(--bg);
+}
+
+.option input[type="radio"],
+.option input[type="checkbox"] {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--ink);
+    flex-shrink: 0;
+}
+
+.option label {
+    cursor: pointer;
+    flex-grow: 1;
+    margin: 0;
+    font-size: 0.92em;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.option input:checked ~ label {
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.option:has(input:checked) {
+    border-color: var(--gold);
+    background: var(--bg-light);
+}
+
+/* ── Text inputs ── */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    font-size: 0.9em;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    background: var(--bg-white);
+    color: var(--text);
+    transition: border-color 0.25s ease;
+    margin-top: 8px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--bg);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 85px;
+}
+
+/* ── Ranking ── */
+.ranking-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    background: var(--bg-white);
+    transition: border-color 0.2s;
+}
+
+.ranking-item:hover {
+    border-color: var(--gold);
+    background: var(--bg);
+}
+
+.ranking-text {
+    flex-grow: 1;
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+.rank-select {
+    width: 58px;
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    background: var(--bg-white);
+    margin-left: 12px;
+}
+
+.rank-select:focus {
+    outline: none;
+    border-color: var(--ink);
+}
+
+/* ── Scenario box ── */
+.scenario-box {
+    background: var(--bg-light);
+    border-left: 2px solid var(--gold);
+    padding: 18px 22px;
+    margin-bottom: 22px;
+    font-size: 0.88em;
+    line-height: 2;
+    color: var(--text);
+    letter-spacing: 0.01em;
+}
+
+/* ── Price / number inputs ── */
+.price-input-container,
+.number-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.price-input-container input,
+.number-input-container input {
+    width: 130px;
+    margin-top: 0;
+}
+
+.price-input-container span,
+.number-input-container span {
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ── Progress / nav ── */
+.section-nav {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-back {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+    padding: 13px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-back:hover {
+    border-color: var(--gold-dark);
+    color: var(--ink);
+}
+
+.btn-next {
+    background: var(--ink);
+    color: var(--bg-light);
+    padding: 13px 36px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-next:hover {
+    background: #2a2a2a;
+    box-shadow: 0 4px 20px rgba(17, 17, 17, 0.15);
+}
+
+.btn-submit {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--gold);
+    padding: 15px 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75em;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background: var(--ink);
+    color: var(--bg-light);
+    border-color: var(--ink);
+}
+
+/* ── Limit msg ── */
+.limit-msg {
+    font-size: 0.75em;
+    color: #8a6a50;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* ── Inline text after checkbox ── */
+.option-inline-text {
+    display: none;
+    width: calc(100% - 30px);
+    margin-top: 8px;
+    margin-left: 28px;
+}
+
+/* ── Success ── */
+.success-message {
+    display: none;
+    background: var(--ink);
+    color: var(--bg-light);
+    padding: 60px 40px;
+    text-align: center;
+    animation: fadeUp 0.5s ease-out;
+}
+
+.success-message.show {
+    display: block;
+}
+
+.success-message h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.success-message .emoji {
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: 18px;
+}
+
+.success-message p {
+    font-size: 0.9em;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--gold-dark);
+    margin-top: 8px;
+}
+
+/* ── Validation errors ── */
+.options.field-error {
+    outline: 1px solid #b87b5e;
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+input.field-error,
+textarea.field-error,
+select.field-error {
+    border-color: #b87b5e !important;
+    background: #fdf8f5 !important;
+}
+
+.ranking-item.field-error {
+    border-color: #b87b5e;
+    background: #fdf8f5;
+}
+
+#validationBanner {
+    display: none;
+    background: #fdf3ee;
+    border-left: 2px solid #b87b5e;
+    padding: 12px 18px;
+    font-size: 0.78em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7a4a35;
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+/* ── Language toggle ── */
+.lang-toggle {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 28px;
+}
+
+.lang-btn {
+    padding: 5px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7em;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--border-soft);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 0;
+}
+
+.lang-btn.active {
+    background: var(--ink);
+    color: var(--bg-light);
+    border-color: var(--ink);
+}
+
+.lang-btn:hover:not(.active) {
+    border-color: var(--gold);
+    color: var(--ink);
+}
+
+/* ── RTL adjustments ── */
+[dir="rtl"] body {
+    font-family: 'Cairo', sans-serif;
+}
+
+[dir="rtl"] .section-header h2,
+[dir="rtl"] .question-label {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 400;
+}
+
+[dir="rtl"] .sub-section h3 {
+    border-left: none;
+    border-right: 4px solid var(--gold);
+    padding-left: 0;
+    padding-right: 12px;
+    border-radius: 6px 0 0 6px;
+}
+
+[dir="rtl"] .scenario-box {
+    border-left: none;
+    border-right: 2px solid var(--gold);
+    padding-left: 0;
+    padding-right: 22px;
+}
+
+[dir="rtl"] #validationBanner {
+    border-left: none;
+    border-right: 2px solid #b87b5e;
+    padding-left: 0;
+    padding-right: 18px;
+}
+
+[dir="rtl"] .section-nav {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .option input[type="radio"],
+[dir="rtl"] .option input[type="checkbox"] {
+    margin-right: 0;
+    margin-left: 12px;
+}
+
+[dir="rtl"] .ranking-item {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .rank-select {
+    margin-left: 0;
+    margin-right: 12px;
+}
+
+[dir="rtl"] .lang-toggle {
+    justify-content: flex-start;
+}
+
+[dir="rtl"] .hero::after {
+    left: 50%;
+    right: auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .form-wrapper {
+        padding: 30px 24px 28px;
+    }
+    .hero-brand .brand-name {
+        font-size: 3em;
+    }
+    .hero-brand .brand-city {
+        font-size: 1.1em;
+    }
+}

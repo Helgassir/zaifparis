@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage Voiles — ZAÏF PARIS</title>
+    <link rel="stylesheet" href="questionnaire_interactif.css">
+</head>
+<body>
+
+    <div class="hero">
+        <div class="hero-brand">
+            <span class="brand-name">ZAÏF</span>
+            <span class="brand-city">PARIS</span>
+        </div>
+        <div class="hero-divider"></div>
+        <p data-ar="ساعدينا في بناء شيء استثنائي — إجاباتكِ مهمة">Aide-nous à façonner quelque chose d'exceptionnel — tes réponses comptent</p>
+    </div>
+
+    <div class="container">
+        <div class="form-wrapper">
+
+            <!-- Language toggle -->
+            <div class="lang-toggle">
+                <button id="btnFr" class="lang-btn active" onclick="setLanguage('fr')">FR</button>
+                <button id="btnAr" class="lang-btn" onclick="setLanguage('ar')">عربي</button>
+            </div>
+
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="section-indicator" id="sectionIndicator">Section A / G</div>
+            <div id="validationBanner">Merci de répondre à toutes les questions avant de continuer.</div>
+
+            <form id="surveyForm">
+
+                <!-- ══ SECTION A ══ -->
+                <div class="form-section active" id="sectionA">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم أ">Section A</span>
+                        <h2 data-ar="الملف الشخصي">Profil Démographique</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="أ١. معلومات أساسية">A1. Informations de base</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">👋</span>
+                                <span data-ar="ما هو اسمك الأول؟">Quel est ton prénom ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(اختياري)">(optionnel)</em>
+                            </label>
+                            <input type="text" name="prenom" placeholder="Ex: Fatima" data-ar-ph="مثال: فاطمة">
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🎂</span>
+                                <span data-ar="كم عمركِ؟">Quel âge as-tu ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="age1" name="age" value="18-25 ans"><label for="age1" data-ar="18-25 سنة">18-25 ans</label></div>
+                                <div class="option"><input type="radio" id="age2" name="age" value="26-35 ans"><label for="age2" data-ar="26-35 سنة">26-35 ans</label></div>
+                                <div class="option"><input type="radio" id="age3" name="age" value="36-45 ans"><label for="age3" data-ar="36-45 سنة">36-45 ans</label></div>
+                                <div class="option"><input type="radio" id="age4" name="age" value="45+ ans"><label for="age4" data-ar="+45 سنة">45+ ans</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">📍</span>
+                                <span data-ar="أين تسكنين؟">Tu habites où ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="loc1" name="location" value="Maroc" onchange="showCityField('Quelle ville au Maroc ?','أي مدينة بالمغرب؟')"><label for="loc1" data-ar="المغرب">Maroc</label></div>
+                                <div class="option"><input type="radio" id="loc2" name="location" value="France" onchange="showCityField('Quelle ville en France ?','أي مدينة بفرنسا؟')"><label for="loc2" data-ar="فرنسا">France</label></div>
+                                <div class="option"><input type="radio" id="loc3" name="location" value="Autre" onchange="showCityField('Quel pays ?','أي بلد؟')"><label for="loc3" data-ar="بلد آخر">Autre pays</label></div>
+                            </div>
+                            <input type="text" id="cityField" name="city" placeholder="Ville / Pays" data-ar-ph="المدينة / البلد" style="display:none; margin-top:10px;">
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="أ٢. الوضع المهني">A2. Situation professionnelle</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💼</span>
+                                <span data-ar="هل تعملين؟">Tu travailles ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="work1" name="work" value="Oui, à temps plein"><label for="work1" data-ar="نعم، بدوام كامل">Oui, à temps plein</label></div>
+                                <div class="option"><input type="radio" id="work2" name="work" value="Oui, à temps partiel"><label for="work2" data-ar="نعم، بدوام جزئي">Oui, à temps partiel</label></div>
+                                <div class="option"><input type="radio" id="work3" name="work" value="Étudiante"><label for="work3" data-ar="طالبة">Étudiante</label></div>
+                                <div class="option">
+                                    <input type="radio" id="work4" name="work" value="Autre" onchange="showEl('workAutreField')">
+                                    <label for="work4" data-ar="أخرى">Autre</label>
+                                    <input type="text" id="workAutreField" name="workAutre" class="option-inline-text" placeholder="Précise..." data-ar-ph="حددي...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💵</span>
+                                <span data-ar="ما هو مستوى دخلكِ الشهري؟">Quel est ton niveau de revenus mensuel ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="rev1" name="revenus" value="<3000 DH (<270€)" onchange="scheduleAdvance(1)"><label for="rev1" data-ar="أقل من 3000 درهم (أقل من 270€)">&lt;3000 DH (&lt;270€)</label></div>
+                                <div class="option"><input type="radio" id="rev2" name="revenus" value="3000-6000 DH (270-545€)" onchange="scheduleAdvance(1)"><label for="rev2" data-ar="3000-6000 درهم (270-545€)">3000-6000 DH (270-545€)</label></div>
+                                <div class="option"><input type="radio" id="rev3" name="revenus" value="6000-10000 DH (545-910€)" onchange="scheduleAdvance(1)"><label for="rev3" data-ar="6000-10000 درهم (545-910€)">6000-10000 DH (545-910€)</label></div>
+                                <div class="option"><input type="radio" id="rev4" name="revenus" value="10000+ DH (910€+)" onchange="scheduleAdvance(1)"><label for="rev4" data-ar="+10000 درهم (910€+)">10000+ DH (910€+)</label></div>
+                                <div class="option"><input type="radio" id="rev5" name="revenus" value="Préfère ne pas répondre" onchange="scheduleAdvance(1)"><label for="rev5" data-ar="أفضل عدم الإجابة">Préfère ne pas répondre</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-next" data-ar="القسم ب ←" onclick="goToSection(1)">Section B →</button>
+                    </div>
+                </div>
+
+                <!-- ══ SECTION B ══ -->
+                <div class="form-section" id="sectionB">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم ب">Section B</span>
+                        <h2 data-ar="سلوك الشراء">Comportement d'achat voiles</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ب١. تكرار الشراء">B1. Fréquence d'achat</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🛍️</span>
+                                <span data-ar="كم مرة تشترين الحجاب/الأوشحة؟">À quelle fréquence achètes-tu des voiles/hijabs ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="freq1" name="frequency" value="Hebdomadaire (1/semaine)"><label for="freq1" data-ar="أسبوعياً (مرة في الأسبوع)">Hebdomadaire (1 par semaine)</label></div>
+                                <div class="option"><input type="radio" id="freq2" name="frequency" value="Bi-mensuel (1 tous les 2 semaines)"><label for="freq2" data-ar="كل أسبوعين (مرة كل أسبوعين)">Bi-mensuel (1 tous les 2 semaines)</label></div>
+                                <div class="option"><input type="radio" id="freq3" name="frequency" value="Mensuel (1/mois)"><label for="freq3" data-ar="شهرياً (مرة في الشهر)">Mensuel (1 par mois)</label></div>
+                                <div class="option"><input type="radio" id="freq4" name="frequency" value="Trimestriel (4/an)"><label for="freq4" data-ar="كل ثلاثة أشهر (4 في السنة)">Trimestriel (4 par an)</label></div>
+                                <div class="option"><input type="radio" id="freq5" name="frequency" value="Rarement (<4/an)"><label for="freq5" data-ar="نادراً (أقل من 4 في السنة)">Rarement (&lt;4 par an)</label></div>
+                                <div class="option"><input type="radio" id="freq6" name="frequency" value="Jamais"><label for="freq6" data-ar="أبداً">Jamais</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🔢</span>
+                                <span data-ar="في المتوسط، كم قطعة حجاب تشترين سنوياً؟">En moyenne, combien de voiles/hijabs achètes-tu par an ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="qty1" name="quantity" value="1-5"><label for="qty1">1-5</label></div>
+                                <div class="option"><input type="radio" id="qty2" name="quantity" value="6-12"><label for="qty2">6-12</label></div>
+                                <div class="option"><input type="radio" id="qty3" name="quantity" value="13-20"><label for="qty3">13-20</label></div>
+                                <div class="option"><input type="radio" id="qty4" name="quantity" value="20+"><label for="qty4" data-ar="أكثر من 20">20+</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ب٢. قنوات الشراء الحالية">B2. Canaux d'achat actuels</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💻</span>
+                                <span data-ar="أين تشترين الحجاب عادةً؟">Où achètes-tu tes voiles généralement ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(إجابات متعددة)">(plusieurs réponses)</em>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="checkbox" id="shop1" name="where" value="Aliexpress"><label for="shop1" data-ar="علي إكسبريس">Aliexpress</label></div>
+                                <div class="option"><input type="checkbox" id="shop2" name="where" value="Amazon"><label for="shop2">Amazon</label></div>
+                                <div class="option"><input type="checkbox" id="shop3" name="where" value="Boutiques Instagram/TikTok (petits créateurs)"><label for="shop3" data-ar="متاجر إنستغرام/تيك توك (منشئو صغار)">Boutiques Instagram/TikTok (petits créateurs)</label></div>
+                                <div class="option"><input type="checkbox" id="shop4" name="where" value="Boutiques établies Maroc"><label for="shop4" data-ar="محلات راسخة بالمغرب">Boutiques établies Maroc</label></div>
+                                <div class="option"><input type="checkbox" id="shop5" name="where" value="Souk / magasins physiques"><label for="shop5" data-ar="الأسواق / المحلات التقليدية">Souk / magasins physiques</label></div>
+                                <div class="option"><input type="checkbox" id="shop6" name="where" value="Amis/famille"><label for="shop6" data-ar="الأصدقاء/العائلة">Amis/famille</label></div>
+                                <div class="option">
+                                    <input type="checkbox" id="shop7" name="where" value="Autre" onchange="toggleInlineText('shopAutreText', this)">
+                                    <label for="shop7" data-ar="أخرى">Autre</label>
+                                    <input type="text" id="shopAutreText" name="whereAutre" class="option-inline-text" placeholder="Précise..." data-ar-ph="حددي...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">⭐</span>
+                                <span data-ar="ما هي قناة الشراء المفضلة لديكِ؟">Quel est TON CANAL PRÉFÉRÉ ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="canal1" name="canalPrefere" value="E-commerce (Aliexpress/Amazon)"><label for="canal1" data-ar="التجارة الإلكترونية (علي إكسبريس/أمازون)">E-commerce (Aliexpress/Amazon)</label></div>
+                                <div class="option"><input type="radio" id="canal2" name="canalPrefere" value="Instagram/TikTok petits créateurs"><label for="canal2" data-ar="إنستغرام/تيك توك منشئو صغار">Instagram/TikTok petits créateurs</label></div>
+                                <div class="option"><input type="radio" id="canal3" name="canalPrefere" value="Boutiques locales établies"><label for="canal3" data-ar="محلات محلية راسخة">Boutiques locales établies</label></div>
+                                <div class="option"><input type="radio" id="canal4" name="canalPrefere" value="Achat physique"><label for="canal4" data-ar="الشراء المباشر">Achat physique</label></div>
+                                <div class="option"><input type="radio" id="canal5" name="canalPrefere" value="Pas de préférence"><label for="canal5" data-ar="لا تفضيل">Pas de préférence</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💬</span>
+                                <span data-ar="لماذا هذه القناة؟">Pourquoi ce canal ?</span>
+                            </label>
+                            <textarea name="pourquoiCanal" placeholder="Explique en quelques mots..." data-ar-ph="اشرحي بكلمات قليلة..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ب٣. معايير الشراء">B3. Critères d'achat</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🏆</span>
+                                <span data-ar="ما الذي يجذبكِ أساساً عند شراء الحجاب؟">Qu'est-ce qui t'attire PRINCIPALEMENT quand tu achètes un voile ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(رتبي من 1 إلى 5، 1 = الأهم)">(Classe de 1 à 5, 1 = plus important)</em>
+                            </label>
+                            <div class="ranking-container">
+                                <div class="ranking-item"><span class="ranking-text" data-ar="جودة القماش (راحة، متانة)">Qualité tissu (confort, durabilité)</span><select name="rank_qualite" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="تنوع الألوان/التصاميم">Variété couleurs/designs</span><select name="rank_couleurs" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="سعر منخفض">Prix bas</span><select name="rank_prix" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="حصرية / إصدار محدود">Exclusivité / édition limitée</span><select name="rank_exclusivite" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="توصية الأصدقاء / الثقة">Recommandation amis / confiance</span><select name="rank_confiance" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">✅</span>
+                                <span data-ar="برأيكِ، ما هو الحجاب ذو الجودة الجيدة؟">D'après toi, c'est quoi un voile de BONNE QUALITÉ ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(إجابات متعددة)">(plusieurs réponses)</em>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="checkbox" id="qual1" name="qualiteDef" value="Tissu doux et confortable"><label for="qual1" data-ar="قماش ناعم ومريح">Tissu doux et confortable</label></div>
+                                <div class="option"><input type="checkbox" id="qual2" name="qualiteDef" value="Couleurs stables au lavage"><label for="qual2" data-ar="ألوان ثابتة لا تبهت بالغسيل">Couleurs qui ne délavent pas au lavage</label></div>
+                                <div class="option"><input type="checkbox" id="qual3" name="qualiteDef" value="Coutures renforcées"><label for="qual3" data-ar="خيوط وتطريز قوي">Coutures renforcées</label></div>
+                                <div class="option"><input type="checkbox" id="qual4" name="qualiteDef" value="Pas d'odeur chimique"><label for="qual4" data-ar="بدون رائحة كيميائية">Pas d'odeur chimique</label></div>
+                                <div class="option"><input type="checkbox" id="qual5" name="qualiteDef" value="Durable (>1 an usage régulier)"><label for="qual5" data-ar="متين (أكثر من سنة استخدام منتظم)">Durable (&gt;1 an d'usage régulier)</label></div>
+                                <div class="option"><input type="checkbox" id="qual6" name="qualiteDef" value="Taille/longueur appropriée"><label for="qual6" data-ar="مقاس مناسب (طول جيد)">Taille appropriée (bonne longueur)</label></div>
+                                <div class="option">
+                                    <input type="checkbox" id="qual7" name="qualiteDef" value="Autre" onchange="toggleInlineText('qualAutreText', this)">
+                                    <label for="qual7" data-ar="أخرى">Autre</label>
+                                    <input type="text" id="qualAutreText" name="qualiteAutre" class="option-inline-text" placeholder="Précise..." data-ar-ph="حددي...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-back" data-ar="→ رجوع" onclick="goToSection(0)">← Retour</button>
+                        <button type="button" class="btn-next" data-ar="القسم ج ←" onclick="goToSection(2)">Section C →</button>
+                    </div>
+                </div>
+
+                <!-- ══ SECTION C ══ -->
+                <div class="form-section" id="sectionC">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم ج">Section C</span>
+                        <h2 data-ar="الأسعار ورغبة الشراء">Pricing &amp; Willingness to Pay</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ج١. السعر المدفوع حالياً">C1. Prix actuel payé</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💰</span>
+                                <span data-ar="ما هو متوسط السعر الذي تدفعينه للحجاب؟">Quel est le PRIX MOYEN que tu paies pour un voile ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="prix1" name="prixMoyen" value="50-100 DH (4-9€)"><label for="prix1" data-ar="50-100 درهم (4-9€)">50-100 DH (4-9€)</label></div>
+                                <div class="option"><input type="radio" id="prix2" name="prixMoyen" value="100-150 DH (9-14€)"><label for="prix2" data-ar="100-150 درهم (9-14€)">100-150 DH (9-14€)</label></div>
+                                <div class="option"><input type="radio" id="prix3" name="prixMoyen" value="150-200 DH (14-18€)"><label for="prix3" data-ar="150-200 درهم (14-18€)">150-200 DH (14-18€)</label></div>
+                                <div class="option"><input type="radio" id="prix4" name="prixMoyen" value="200-300 DH (18-27€)"><label for="prix4" data-ar="200-300 درهم (18-27€)">200-300 DH (18-27€)</label></div>
+                                <div class="option"><input type="radio" id="prix5" name="prixMoyen" value="300+ DH (27€+)"><label for="prix5" data-ar="+300 درهم (27€+)">300+ DH (27€+)</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">😊</span>
+                                <span data-ar="هل أنتِ راضية عن نسبة الجودة/السعر حالياً؟">Es-tu satisfaite du rapport qualité-prix actuel ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="sat1" name="satisfaction" value="Oui, totalement"><label for="sat1" data-ar="نعم، تماماً">Oui, totalement</label></div>
+                                <div class="option"><input type="radio" id="sat2" name="satisfaction" value="Oui, mais cher"><label for="sat2" data-ar="نعم، لكنه غالٍ">Oui, mais cher</label></div>
+                                <div class="option"><input type="radio" id="sat3" name="satisfaction" value="Non, mauvaise qualité pour le prix"><label for="sat3" data-ar="لا، جودة سيئة مقارنة بالسعر">Non, mauvaise qualité pour le prix</label></div>
+                                <div class="option"><input type="radio" id="sat4" name="satisfaction" value="Ne sait pas / pas applicable"><label for="sat4" data-ar="غير منطبق (لا أعرف)">Pas applicable (je ne sais pas)</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ج٢. رغبة الدفع">C2. Willingness to Pay</h3>
+                        <div class="scenario-box" data-ar-html="💡 <strong>سيناريو :</strong> مصممة شابة تبيع أوشحة <strong>بجودة فرنسية</strong> عوض علي إكسبريس الرخيص.">
+                            💡 <strong>SCÉNARIO :</strong> Une jeune créatrice vend des voiles <strong>QUALITÉ FRANÇAISE</strong> à la place d'Aliexpress cheap.
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">✅</span>
+                                <span data-ar="بأي سعر ستشترين حتماً؟">À quel prix achèterais-tu DÉFINITIVEMENT ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="wtp1" name="wtp" value="120-150 DH"><label for="wtp1" data-ar="120-150 درهم (جودة أعلى من علي إكسبريس)">120-150 DH (qualité supérieure vs Aliexpress)</label></div>
+                                <div class="option"><input type="radio" id="wtp2" name="wtp" value="150-180 DH"><label for="wtp2" data-ar="150-180 درهم (نسبة جودة/سعر جيدة)">150-180 DH (bon rapport qualité-prix)</label></div>
+                                <div class="option"><input type="radio" id="wtp3" name="wtp" value="180-220 DH"><label for="wtp3" data-ar="180-220 درهم (أقبل السعر المرتفع للجودة الفرنسية)">180-220 DH (accepte premium pour qualité FR)</label></div>
+                                <div class="option"><input type="radio" id="wtp4" name="wtp" value="220-280 DH"><label for="wtp4" data-ar="220-280 درهم (مميز، لكن يجب أن يكون ممتازاً)">220-280 DH (premium, mais faut être excellent)</label></div>
+                                <div class="option"><input type="radio" id="wtp5" name="wtp" value="280+ DH"><label for="wtp5" data-ar="+280 درهم (فاخر، تصميم حصري)">280+ DH (luxury, design exclusif)</label></div>
+                                <div class="option"><input type="radio" id="wtp6" name="wtp" value="Aucun prix (trop cher)"><label for="wtp6" data-ar="لا يوجد سعر مناسب (غالٍ جداً)">Aucun prix me satisfait (trop cher)</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">❌</span>
+                                <span data-ar='بأي سعر ستقولين "غالٍ جداً، سأذهب لعلي إكسبريس"؟'>À quel prix tu dirais "trop cher, je vais sur Aliexpress" ?</span>
+                            </label>
+                            <div class="price-input-container">
+                                <input type="number" name="prixTropCher" placeholder="Ex: 250" data-ar-ph="مثال: 250" min="0" max="2000">
+                                <span>DH</span>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🤩</span>
+                                <span data-ar='بأي سعر ستقولين "رائع، إنها صفقة"؟'>À quel prix tu dirais "wow, c'est une affaire" ?</span>
+                            </label>
+                            <div class="price-input-container">
+                                <input type="number" name="prixAffaire" placeholder="Ex: 150" data-ar-ph="مثال: 150" min="0" max="2000">
+                                <span>DH</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ج٣. الإكسسوارات">C3. Accessoires</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💍</span>
+                                <span data-ar="هل تشترين إكسسوارات مع الحجاب أيضاً؟ (أساور، أوشحة، دبابيس...)">Achètes-tu aussi des accessoires avec tes voiles ? (bracelets, scarfs, épingles...)</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="acc1" name="accessoires" value="Oui, régulièrement" onchange="showEl('accDetails')"><label for="acc1" data-ar="نعم، بانتظام (مع كل شراء)">Oui, régulièrement (avec chaque achat)</label></div>
+                                <div class="option"><input type="radio" id="acc2" name="accessoires" value="Oui, parfois" onchange="showEl('accDetails')"><label for="acc2" data-ar="نعم، أحياناً">Oui, parfois</label></div>
+                                <div class="option"><input type="radio" id="acc3" name="accessoires" value="Non, jamais" onchange="hideEl('accDetails'); scheduleAdvance(3)"><label for="acc3" data-ar="لا، أبداً">Non, jamais</label></div>
+                            </div>
+                        </div>
+
+                        <div id="accDetails" style="display:none;">
+                            <div class="question">
+                                <label class="question-label">
+                                    <span class="emoji-inline">🌟</span>
+                                    <span data-ar="أي إكسسوار يثير اهتمامكِ أكثر؟">Quel accessoire t'intéresse le plus ?</span>
+                                </label>
+                                <div class="options">
+                                    <div class="option"><input type="radio" id="accType1" name="accessoireType" value="Bracelets assortis"><label for="accType1" data-ar="أساور منسجمة">Bracelets assortis</label></div>
+                                    <div class="option"><input type="radio" id="accType2" name="accessoireType" value="Scarfs/foulards supplémentaires"><label for="accType2" data-ar="أوشحة/فوطة إضافية">Scarfs/foulards supplémentaires</label></div>
+                                    <div class="option"><input type="radio" id="accType3" name="accessoireType" value="Épingles/fermetures décoratives"><label for="accType3" data-ar="دبابيس/إغلاق زخرفي">Épingles/fermetures décoratives</label></div>
+                                    <div class="option"><input type="radio" id="accType4" name="accessoireType" value="Packaging cadeau"><label for="accType4" data-ar="تغليف هدية">Packaging cadeau</label></div>
+                                    <div class="option"><input type="radio" id="accType5" name="accessoireType" value="Autre"><label for="accType5" data-ar="أخرى">Autre</label></div>
+                                </div>
+                            </div>
+                            <div class="question">
+                                <label class="question-label">
+                                    <span class="emoji-inline">💵</span>
+                                    <span data-ar="بأي سعر ستقبلين الإكسسوار؟ (مثال: سوار منسجم مع الحجاب)">À quel prix accepterais-tu un accessoire ? (ex: bracelet assorti voile)</span>
+                                </label>
+                                <div class="options">
+                                    <div class="option"><input type="radio" id="accPrix1" name="accessoirePrix" value="30-50 DH (très bas)" onchange="scheduleAdvance(3)"><label for="accPrix1" data-ar="30-50 درهم (مجاني / منخفض جداً)">30-50 DH (gratuit / très bas)</label></div>
+                                    <div class="option"><input type="radio" id="accPrix2" name="accessoirePrix" value="50-80 DH (bas)" onchange="scheduleAdvance(3)"><label for="accPrix2" data-ar="50-80 درهم (منخفض)">50-80 DH (bas)</label></div>
+                                    <div class="option"><input type="radio" id="accPrix3" name="accessoirePrix" value="80-120 DH (moyen)" onchange="scheduleAdvance(3)"><label for="accPrix3" data-ar="80-120 درهم (متوسط)">80-120 DH (moyen)</label></div>
+                                    <div class="option"><input type="radio" id="accPrix4" name="accessoirePrix" value="120+ DH (design exclusif)" onchange="scheduleAdvance(3)"><label for="accPrix4" data-ar="+120 درهم (تصميم حصري)">120+ DH (haut, faut être design exclusif)</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-back" data-ar="→ رجوع" onclick="goToSection(1)">← Retour</button>
+                        <button type="button" class="btn-next" data-ar="القسم د ←" onclick="goToSection(3)">Section D →</button>
+                    </div>
+                </div>
+
+                <!-- ══ SECTION D ══ -->
+                <div class="form-section" id="sectionD">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم د">Section D</span>
+                        <h2 data-ar="الثقة والعوائق">Confiance &amp; Obstacles</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="د١. العائق الرئيسي">D1. Frein principal</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">⚠️</span>
+                                <span data-ar="ما هو عائقكِ الرئيسي للشراء من مصممة صغيرة غير معروفة؟">Quel est TON PRINCIPAL FREIN pour acheter chez une petite créatrice inconnue ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="frein1" name="frein" value="Peur mauvaise qualité (arnaque textile)"><label for="frein1" data-ar="خوف من جودة رديئة (نصب نسيج)">Peur mauvaise qualité (arnaque textile)</label></div>
+                                <div class="option"><input type="radio" id="frein2" name="frein" value="Peur ne pas recevoir (arnaque livraison)"><label for="frein2" data-ar="خوف من عدم الاستلام (نصب توصيل)">Peur ne pas recevoir (arnaque livraison)</label></div>
+                                <div class="option"><input type="radio" id="frein3" name="frein" value="Délai livraison trop long (>15 jours)"><label for="frein3" data-ar="وقت التوصيل طويل جداً (أكثر من 15 يوماً)">Délai livraison trop long (&gt;15 jours)</label></div>
+                                <div class="option"><input type="radio" id="frein4" name="frein" value="Pas de politique retour claire"><label for="frein4" data-ar="غياب سياسة إرجاع واضحة">Pas de politique retour claire</label></div>
+                                <div class="option"><input type="radio" id="frein5" name="frein" value="Préfère voir en personne"><label for="frein5" data-ar="أفضل رؤية المنتج شخصياً">Préfère voir en personne</label></div>
+                                <div class="option"><input type="radio" id="frein6" name="frein" value="Confiance sur la qualité réelle"><label for="frein6" data-ar="الثقة: كيف أعرف أنها جودة حقيقية؟">Confiance : comment je sais que c'est vraiment qualité ?</label></div>
+                                <div class="option"><input type="radio" id="frein7" name="frein" value="Pas de frein, j'achèterais"><label for="frein7" data-ar="لا عائق، سأشتري">Pas de frein, j'achèterais</label></div>
+                                <div class="option">
+                                    <input type="radio" id="frein8" name="frein" value="Autre" onchange="showEl('freinAutreField')">
+                                    <label for="frein8" data-ar="أخرى">Autre</label>
+                                    <input type="text" id="freinAutreField" name="freinAutre" class="option-inline-text" placeholder="Précise..." data-ar-ph="حددي...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="د٢. كيف تستعيدين الثقة؟">D2. Comment regagner confiance ?</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🤝</span>
+                                <span data-ar="ما الذي سيطمئنكِ للشراء من مصممة جديدة؟">Qu'est-ce qui te RASSURERAIT pour acheter auprès d'une créatrice nouvelle ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(اختاري أفضل 3)">(Choisis top 3)</em>
+                            </label>
+                            <div class="options" id="rassurantOpts">
+                                <div class="option"><input type="checkbox" id="rass1" name="rassurant" value="Vidéo unboxing (vraie cliente satisfaite)" onchange="limitCheck(this,'rassurant',3)"><label for="rass1" data-ar="فيديو فتح الطرد (زبونة حقيقية راضية)">Vidéo unboxing (vraie cliente satisfaite)</label></div>
+                                <div class="option"><input type="checkbox" id="rass2" name="rassurant" value="Garantie satisfaction / retour facile" onchange="limitCheck(this,'rassurant',3)"><label for="rass2" data-ar="ضمان الرضا / سهولة الإرجاع">Garantie satisfaction / retour facile</label></div>
+                                <div class="option"><input type="checkbox" id="rass3" name="rassurant" value="Recommandation amis" onchange="limitCheck(this,'rassurant',3)"><label for="rass3" data-ar="توصية من صديقة">Recommandation amis</label></div>
+                                <div class="option"><input type="checkbox" id="rass4" name="rassurant" value="Politique transparente (délai, retours)" onchange="limitCheck(this,'rassurant',3)"><label for="rass4" data-ar="سياسة شفافة (المهل، الإرجاع)">Politique transparente (délai, retours)</label></div>
+                                <div class="option"><input type="checkbox" id="rass5" name="rassurant" value="Photos haute qualité (pas filtré)" onchange="limitCheck(this,'rassurant',3)"><label for="rass5" data-ar="صور عالية الجودة (غير مفلترة)">Photos qualité haute (pas filtré)</label></div>
+                                <div class="option"><input type="checkbox" id="rass6" name="rassurant" value="WhatsApp rapide pour questions" onchange="limitCheck(this,'rassurant',3)"><label for="rass6" data-ar="واتساب سريع للأسئلة">WhatsApp rapide pour questions</label></div>
+                                <div class="option"><input type="checkbox" id="rass7" name="rassurant" value="Prix légèrement plus bas" onchange="limitCheck(this,'rassurant',3)"><label for="rass7" data-ar="سعر أقل قليلاً = مخاطرة أقل">Prix légèrement plus bas = moins risqué</label></div>
+                                <div class="option"><input type="checkbox" id="rass8" name="rassurant" value="Édition très limitée (exclusivité)" onchange="limitCheck(this,'rassurant',3)"><label for="rass8" data-ar="إصدار محدود جداً (حصرية)">Édition très limitée (exclusivité)</label></div>
+                                <div class="option">
+                                    <input type="checkbox" id="rass9" name="rassurant" value="Autre" onchange="limitCheck(this,'rassurant',3); toggleInlineText('rassAutreText', this)">
+                                    <label for="rass9" data-ar="أخرى">Autre</label>
+                                    <input type="text" id="rassAutreText" name="rassurantAutre" class="option-inline-text" placeholder="Précise..." data-ar-ph="حددي...">
+                                </div>
+                            </div>
+                            <p id="rassurantLimitMsg" class="limit-msg" style="display:none;" data-ar="الحد الأقصى 3 اختيارات!">Maximum 3 choix!</p>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💳</span>
+                                <span data-ar="هل ستدفعين مسبقاً أم تفضلين الدفع عند الاستلام؟">Est-ce que tu pairais D'AVANCE ou tu préférerais paiement à la réception ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="pay1" name="paiement" value="D'avance (virement bancaire)" onchange="scheduleAdvance(4)"><label for="pay1" data-ar="مسبقاً (تحويل بنكي)">D'avance (virement bancaire)</label></div>
+                                <div class="option"><input type="radio" id="pay2" name="paiement" value="À la réception (Maroc Pay / COD)" onchange="scheduleAdvance(4)"><label for="pay2" data-ar="عند الاستلام (ماروك باي / الدفع عند التسليم)">À la réception (Maroc Pay, COD si possible)</label></div>
+                                <div class="option"><input type="radio" id="pay3" name="paiement" value="Dépend du montant" onchange="scheduleAdvance(4)"><label for="pay3" data-ar="يعتمد على المبلغ">Dépend du montant</label></div>
+                                <div class="option"><input type="radio" id="pay4" name="paiement" value="Pas de préférence" onchange="scheduleAdvance(4)"><label for="pay4" data-ar="لا تفضيل">Pas de préférence</label></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-back" data-ar="→ رجوع" onclick="goToSection(2)">← Retour</button>
+                        <button type="button" class="btn-next" data-ar="القسم هـ ←" onclick="goToSection(4)">Section E →</button>
+                    </div>
+                </div>
+
+                <!-- ══ SECTION E ══ -->
+                <div class="form-section" id="sectionE">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم هـ">Section E</span>
+                        <h2 data-ar="التوزيع والقنوات">Distribution &amp; Canaux</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="هـ١. تفضيل القناة">E1. Préférence canal</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">📲</span>
+                                <span data-ar="كيف تفضلين الشراء من مصممة؟">Comment préférerais-tu acheter auprès d'une créatrice ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(رتبي من 1 إلى 3، 1 = الأكثر تفضيلاً)">(Classe de 1 à 3, 1 = plus préféré)</em>
+                            </label>
+                            <div class="ranking-container">
+                                <div class="ranking-item"><span class="ranking-text" data-ar="واتساب + تحويل بنكي">WhatsApp + virement bancaire</span><select name="rank_whatsapp" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="رسائل إنستغرام + رابط دفع">Instagram DM + link paiement</span><select name="rank_instagram_dm" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="موقع تجارة إلكترونية خاص">Site e-commerce personnel</span><select name="rank_site" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option></select></div>
+                                <div class="ranking-item"><span class="ranking-text" data-ar="مجموعة خاصة فيسبوك/واتساب">Groupe privé Facebook/WhatsApp</span><select name="rank_groupe" class="rank-select"><option value="">--</option><option>1</option><option>2</option><option>3</option></select></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="هـ٢. الانتشار والتوصية">E2. Viralité &amp; recommandation</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">📢</span>
+                                <span data-ar="هل ستوصين بحجاب أعجبكِ لصديقاتكِ؟">Recommanderais-tu une voile que tu aimes à tes amies ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="viral1" name="viralite" value="Oui, toujours (partage sur réseaux)"><label for="viral1" data-ar="نعم، دائماً (أشاركه على الشبكات)">Oui, toujours (je partage sur réseaux)</label></div>
+                                <div class="option"><input type="radio" id="viral2" name="viralite" value="Oui, seulement si elles demandent"><label for="viral2" data-ar="نعم، فقط إذا سألن">Oui, mais seulement si elles demandent</label></div>
+                                <div class="option"><input type="radio" id="viral3" name="viralite" value="Peut-être, ça dépend qualité"><label for="viral3" data-ar="ربما، يعتمد على الجودة">Peut-être, ça dépend de la qualité</label></div>
+                                <div class="option"><input type="radio" id="viral4" name="viralite" value="Non, préfère garder pour moi"><label for="viral4" data-ar="لا، أفضل الاحتفاظ به لنفسي">Non, je préfère garder pour moi</label></div>
+                                <div class="option"><input type="radio" id="viral5" name="viralite" value="Jamais partagé avant"><label for="viral5" data-ar="لم أشارك قط من قبل">Jamais partagé avant</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">👭</span>
+                                <span data-ar="كم صديقة تعتقدين أنكِ ستوصين إذا وجدتِ حجاباً رائعاً؟">Combien d'amies tu penses tu recommanderais si tu trouves une voile super ?</span>
+                            </label>
+                            <div class="number-input-container">
+                                <input type="number" name="nombreAmies" placeholder="Ex: 5" data-ar-ph="مثال: 5" min="0" max="200">
+                                <span data-ar="شخصاً">personnes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-back" data-ar="→ رجوع" onclick="goToSection(3)">← Retour</button>
+                        <button type="button" class="btn-next" data-ar="القسم و ←" onclick="goToSection(5)">Section F →</button>
+                    </div>
+                </div>
+
+                <!-- ══ SECTION F ══ -->
+                <div class="form-section" id="sectionF">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم و">Section F</span>
+                        <h2 data-ar="المنافسة والتموضع">Concurrence &amp; Positionnement</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="و١. المنشئون المعروفون">F1. Créateurs connus</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🔍</span>
+                                <span data-ar="هل تعرفين منشئين صغار على إنستغرام يبيعون الحجاب بالمغرب؟">Connais-tu des petits créateurs Instagram qui vendent des voiles/hijabs au Maroc ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="connus1" name="connaisCreateurs" value="Oui" onchange="showEl('createursNomField')"><label for="connus1" data-ar="نعم">Oui</label></div>
+                                <div class="option"><input type="radio" id="connus2" name="connaisCreateurs" value="Non" onchange="hideEl('createursNomField')"><label for="connus2" data-ar="لا">Non</label></div>
+                            </div>
+                            <input type="text" id="createursNomField" name="createursConnus" placeholder="Nomme-les..." data-ar-ph="اذكري أسماءهم..." style="display:none; margin-top:10px;">
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🛒</span>
+                                <span data-ar="هل تشترين بالفعل من منشئين على إنستغرام؟">Achètes-tu déjà auprès de créateurs Instagram ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="achete1" name="acheteCreateurs" value="Oui" onchange="showEl('acheteNomField')"><label for="achete1" data-ar="نعم">Oui</label></div>
+                                <div class="option"><input type="radio" id="achete2" name="acheteCreateurs" value="Non" onchange="hideEl('acheteNomField')"><label for="achete2" data-ar="لا">Non</label></div>
+                            </div>
+                            <input type="text" id="acheteNomField" name="acheteCreateursNom" placeholder="C'est qui ?" data-ar-ph="من هم؟" style="display:none; margin-top:10px;">
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="و٢. التموضع">F2. Positionnement</h3>
+                        <div class="scenario-box"
+                             data-ar-html="✨ أوشحة بجودة فرنسية<br>💰 أسعار في متناول الجميع (180-220 درهم)<br>⏱️ توصيل 7-10 أيام<br>🎁 إصدار محدود (حصرية)<br>💬 خدمة عملاء واتساب (سريعة)">
+                            ✨ VOILES QUALITÉ FRANÇAISE<br>
+                            💰 PRIX ACCESSIBLE (180-220 DH)<br>
+                            ⏱️ LIVRAISON 7-10 jours<br>
+                            🎁 ÉDITION LIMITÉE (exclusivité)<br>
+                            💬 SAV WhatsApp (rapide)
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">❓</span>
+                                <span data-ar="لنتخيل مصممة بهذه المواصفات. هل ستهتمين؟">Imaginons une créatrice avec ces caractéristiques. Serais-tu intéressée ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="inter1" name="interesse" value="Très intéressée, je commanderais" onchange="scheduleAdvance(6)"><label for="inter1" data-ar="مهتمة جداً، سأطلب">Très intéressée, je commanderais</label></div>
+                                <div class="option"><input type="radio" id="inter2" name="interesse" value="Intéressée, peut-être" onchange="scheduleAdvance(6)"><label for="inter2" data-ar="مهتمة، ربما">Intéressée, peut-être</label></div>
+                                <div class="option"><input type="radio" id="inter3" name="interesse" value="Pas vraiment intéressée" onchange="scheduleAdvance(6)"><label for="inter3" data-ar="غير مهتمة كثيراً">Pas vraiment intéressée</label></div>
+                                <div class="option"><input type="radio" id="inter4" name="interesse" value="Non, pas mon style" onchange="scheduleAdvance(6)"><label for="inter4" data-ar="لا، ليس أسلوبي">Non, pas mon style</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💭</span>
+                                <span data-ar="لماذا؟">Pourquoi ?</span>
+                            </label>
+                            <textarea name="pourquoiInteresse" placeholder="Explique en quelques mots..." data-ar-ph="اشرحي بكلمات قليلة..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-back" data-ar="→ رجوع" onclick="goToSection(4)">← Retour</button>
+                        <button type="button" class="btn-next" data-ar="القسم ز ←" onclick="goToSection(6)">Section G →</button>
+                    </div>
+                </div>
+
+                <!-- ══ SECTION G ══ -->
+                <div class="form-section" id="sectionG">
+                    <div class="section-header">
+                        <span class="section-badge" data-ar="القسم ز">Section G</span>
+                        <h2 data-ar="البيانات الشخصية">Données Personnelles</h2>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ز١. التواصل والمتابعة">G1. Contact &amp; suivi</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">📱</span>
+                                <span data-ar="هل يمكنني التواصل معكِ إذا انطلق المشروع؟">Puis-je te recontacter si le projet lance ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="recontact1" name="recontact" value="Oui, par WhatsApp" onchange="showEl('contactInfoField')"><label for="recontact1" data-ar="نعم، عبر واتساب">Oui, par WhatsApp</label></div>
+                                <div class="option"><input type="radio" id="recontact2" name="recontact" value="Oui, par Instagram" onchange="showEl('contactInfoField')"><label for="recontact2" data-ar="نعم، عبر إنستغرام">Oui, par Instagram</label></div>
+                                <div class="option"><input type="radio" id="recontact3" name="recontact" value="Oui, par email" onchange="showEl('contactInfoField')"><label for="recontact3" data-ar="نعم، عبر البريد الإلكتروني">Oui, par email</label></div>
+                                <div class="option"><input type="radio" id="recontact4" name="recontact" value="Non" onchange="hideEl('contactInfoField')"><label for="recontact4" data-ar="لا، مرة واحدة تكفي">Non, une fois c'est assez</label></div>
+                            </div>
+                            <input type="text" id="contactInfoField" name="contactInfo" placeholder="Ton contact (WhatsApp / Instagram / Email)" data-ar-ph="معلومات التواصل (واتساب / إنستغرام / بريد)" style="display:none; margin-top:10px;">
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">📋</span>
+                                <span data-ar="هل تريدين أن تكوني في قائمة الانتظار إذا انطلق المنتج؟">Veux-tu être dans liste d'attente si le produit lance ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="wait1" name="waitlist" value="Oui, compte-moi!"><label for="wait1" data-ar="نعم، أضيفيني! 🎉">Oui, compte-moi! 🎉</label></div>
+                                <div class="option"><input type="radio" id="wait2" name="waitlist" value="Non, on verra"><label for="wait2" data-ar="لا، سنرى">Non, on verra</label></div>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">🎁</span>
+                                <span data-ar="إذا نعم، أي خصم سيهمكِ للانطلاق المبكر؟">Si oui, quelle remise t'intéresserait pour lancer early ?</span>
+                            </label>
+                            <div class="options">
+                                <div class="option"><input type="radio" id="remise1" name="remise" value="10% de remise"><label for="remise1" data-ar="خصم 10%">10% de remise</label></div>
+                                <div class="option"><input type="radio" id="remise2" name="remise" value="Premier achat gratuit (!)"><label for="remise2" data-ar="أول شراء مجاني (!)">Premier achat gratuit (!)</label></div>
+                                <div class="option"><input type="radio" id="remise3" name="remise" value="Pack 3 voiles à prix 2"><label for="remise3" data-ar="حزمة 3 أوشحة بسعر 2">Pack 3 voiles à prix 2</label></div>
+                                <div class="option">
+                                    <input type="radio" id="remise4" name="remise" value="Autre" onchange="showEl('remiseAutreField')">
+                                    <label for="remise4" data-ar="أخرى">Autre</label>
+                                    <input type="text" id="remiseAutreField" name="remiseAutre" class="option-inline-text" placeholder="Précise..." data-ar-ph="حددي...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 data-ar="ز٢. ملاحظات مفتوحة">G2. Feedback ouvert</h3>
+
+                        <div class="question">
+                            <label class="question-label">
+                                <span class="emoji-inline">💌</span>
+                                <span data-ar="هل هناك شيء لم أسأل عنه لكنكِ تعتقدين أنه مهم؟">Y a-t-il QUELQUE CHOSE que j'ai pas demandé mais tu penses est important ?</span>
+                                <em style="font-weight:400;color:var(--text-muted)" data-ar="(اقتراحاتكِ الحرة)">(Tes suggestions libres)</em>
+                            </label>
+                            <textarea name="feedbackOuvert" placeholder="Tes pensées libres..." data-ar-ph="أفكارك الحرة..." rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="section-nav">
+                        <button type="button" class="btn-back" data-ar="→ رجوع" onclick="goToSection(5)">← Retour</button>
+                        <button type="submit" class="btn-submit" style="width:auto; flex:1; margin-left:12px;" data-ar="← إرسال الاستبيان">Envoyer le sondage →</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <span class="emoji">✨</span>
+                <h2 data-ar="شكراً جزيلاً! ❤️">MERCI BEAUCOUP! ❤️</h2>
+                <p data-ar="تم تسجيل إجاباتكِ بنجاح!">Tes réponses ont été enregistrées avec succès!</p>
+                <p data-ar="ستُتصل بكِ عند انطلاق المشروع 👗">Tu seras contactée quand le business lance 👗</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SECTIONS = ['sectionA','sectionB','sectionC','sectionD','sectionE','sectionF','sectionG'];
+        const FR_LABELS = ['A','B','C','D','E','F','G'];
+        const AR_LABELS = ['أ','ب','ج','د','هـ','و','ز'];
+        let current = 0;
+        let advanceTimer = null;
+        let currentLang = 'fr';
+
+        const OPTIONAL = new Set([
+            'prenom','city','workAutre','whereAutre','qualiteAutre',
+            'freinAutre','rassurantAutre','remiseAutre',
+            'createursConnus','acheteCreateursNom','contactInfo'
+        ]);
+
+        /* ── Language switcher ── */
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            // Simple text elements
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                if (lang === 'ar') {
+                    if (el.dataset.fr === undefined) el.dataset.fr = el.textContent;
+                    el.textContent = el.dataset.ar;
+                } else {
+                    if (el.dataset.fr !== undefined) el.textContent = el.dataset.fr;
+                }
+            });
+
+            // innerHTML elements (scenario boxes)
+            document.querySelectorAll('[data-ar-html]').forEach(el => {
+                if (lang === 'ar') {
+                    if (!el.dataset.frHtml) el.dataset.frHtml = el.innerHTML;
+                    el.innerHTML = el.dataset.arHtml;
+                } else {
+                    if (el.dataset.frHtml) el.innerHTML = el.dataset.frHtml;
+                }
+            });
+
+            // Placeholders
+            document.querySelectorAll('[data-ar-ph]').forEach(el => {
+                if (lang === 'ar') {
+                    if (!el.dataset.frPh) el.dataset.frPh = el.placeholder;
+                    el.placeholder = el.dataset.arPh;
+                } else {
+                    if (el.dataset.frPh) el.placeholder = el.dataset.frPh;
+                }
+            });
+
+            // Validation banner
+            const banner = document.getElementById('validationBanner');
+            const bannerTexts = {
+                fr: 'Merci de répondre à toutes les questions avant de continuer.',
+                ar: 'يرجى الإجابة على جميع الأسئلة قبل المتابعة.'
+            };
+            banner.textContent = bannerTexts[lang];
+
+            // Submit button margin for RTL
+            const submitBtn = document.querySelector('.btn-submit');
+            if (submitBtn) {
+                submitBtn.style.marginLeft  = lang === 'ar' ? '0'    : '12px';
+                submitBtn.style.marginRight = lang === 'ar' ? '12px' : '0';
+            }
+
+            // Toggle lang buttons
+            document.getElementById('btnFr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btnAr').classList.toggle('active', lang === 'ar');
+
+            updateSectionIndicator();
+        }
+
+        function updateSectionIndicator() {
+            const labels = currentLang === 'ar' ? AR_LABELS : FR_LABELS;
+            const prefix = currentLang === 'ar' ? 'القسم ' : 'Section ';
+            document.getElementById('sectionIndicator').textContent =
+                prefix + labels[current] + ' / ' + labels[labels.length - 1];
+        }
+
+        /* ── Validation ── */
+        function isVisible(el) {
+            let node = el;
+            while (node) {
+                if (node === document.body) return true;
+                if (window.getComputedStyle(node).display === 'none') return false;
+                node = node.parentElement;
+            }
+            return true;
+        }
+
+        function validateCurrentSection() {
+            const sec = document.getElementById(SECTIONS[current]);
+            let ok = true;
+            sec.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+            document.getElementById('validationBanner').style.display = 'none';
+
+            const radioMap = {};
+            sec.querySelectorAll('input[type="radio"]').forEach(r => {
+                if (!isVisible(r)) return;
+                if (!radioMap[r.name]) radioMap[r.name] = { checked: false, container: r.closest('.options') };
+                if (r.checked) radioMap[r.name].checked = true;
+            });
+            Object.values(radioMap).forEach(g => {
+                if (!g.checked) { ok = false; if (g.container) g.container.classList.add('field-error'); }
+            });
+
+            const cbMap = {};
+            sec.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (!isVisible(cb)) return;
+                if (!cbMap[cb.name]) cbMap[cb.name] = { checked: false, container: cb.closest('.options') };
+                if (cb.checked) cbMap[cb.name].checked = true;
+            });
+            Object.values(cbMap).forEach(g => {
+                if (!g.checked) { ok = false; if (g.container) g.container.classList.add('field-error'); }
+            });
+
+            sec.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(f => {
+                if (!isVisible(f)) return;
+                if (OPTIONAL.has(f.name)) return;
+                if (!f.value.trim()) { ok = false; f.classList.add('field-error'); }
+            });
+
+            sec.querySelectorAll('select.rank-select').forEach(s => {
+                if (!isVisible(s)) return;
+                if (!s.value) { ok = false; s.classList.add('field-error'); s.closest('.ranking-item').classList.add('field-error'); }
+            });
+
+            if (!ok) {
+                const banner = document.getElementById('validationBanner');
+                banner.style.display = 'block';
+                banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return ok;
+        }
+
+        /* ── Navigation ── */
+        function goToSection(n, skipValidation) {
+            if (n < 0 || n >= SECTIONS.length) return;
+            if (!skipValidation && n > current && !validateCurrentSection()) return;
+            if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
+
+            document.getElementById(SECTIONS[current]).classList.remove('active');
+            current = n;
+            document.getElementById(SECTIONS[current]).classList.add('active');
+
+            document.getElementById('progressFill').style.width =
+                (((current + 1) / SECTIONS.length) * 100) + '%';
+            updateSectionIndicator();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scheduleAdvance(target, delay) {
+            if (advanceTimer) clearTimeout(advanceTimer);
+            advanceTimer = setTimeout(() => goToSection(target, true), delay || 900);
+        }
+
+        /* ── Conditional fields ── */
+        function showEl(id) { const el = document.getElementById(id); if (el) el.style.display = 'block'; }
+        function hideEl(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
+
+        function showCityField(frPh, arPh) {
+            const f = document.getElementById('cityField');
+            f.placeholder     = currentLang === 'ar' ? arPh : frPh;
+            f.dataset.frPh    = frPh;
+            f.dataset.arPh    = arPh;
+            f.style.display   = 'block';
+        }
+
+        function toggleInlineText(fieldId, checkbox) {
+            const f = document.getElementById(fieldId);
+            if (f) f.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function limitCheck(checkbox, name, max) {
+            const checked = document.querySelectorAll('input[name="' + name + '"]:checked');
+            const msg = document.getElementById(name + 'LimitMsg');
+            if (checked.length > max) {
+                checkbox.checked = false;
+                if (msg) { msg.style.display = 'block'; setTimeout(() => msg.style.display = 'none', 2000); }
+            }
+        }
+
+        /* ── Submit ── */
+        document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!validateCurrentSection()) return;
+            const fd = new FormData(this);
+            const data = {
+                prenom: fd.get('prenom'), age: fd.get('age'), location: fd.get('location'), city: fd.get('city'),
+                work: fd.get('work'), workAutre: fd.get('workAutre'), revenus: fd.get('revenus'),
+                frequency: fd.get('frequency'), quantity: fd.get('quantity'),
+                where: fd.getAll('where').join(', '), whereAutre: fd.get('whereAutre'),
+                canalPrefere: fd.get('canalPrefere'), pourquoiCanal: fd.get('pourquoiCanal'),
+                rank_qualite: fd.get('rank_qualite'), rank_couleurs: fd.get('rank_couleurs'),
+                rank_prix: fd.get('rank_prix'), rank_exclusivite: fd.get('rank_exclusivite'),
+                rank_confiance: fd.get('rank_confiance'),
+                qualiteDef: fd.getAll('qualiteDef').join(', '), qualiteAutre: fd.get('qualiteAutre'),
+                prixMoyen: fd.get('prixMoyen'), satisfaction: fd.get('satisfaction'),
+                wtp: fd.get('wtp'), prixTropCher: fd.get('prixTropCher'), prixAffaire: fd.get('prixAffaire'),
+                accessoires: fd.get('accessoires'), accessoireType: fd.get('accessoireType'),
+                accessoirePrix: fd.get('accessoirePrix'),
+                frein: fd.get('frein'), freinAutre: fd.get('freinAutre'),
+                rassurant: fd.getAll('rassurant').join(', '), rassurantAutre: fd.get('rassurantAutre'),
+                paiement: fd.get('paiement'),
+                rank_whatsapp: fd.get('rank_whatsapp'), rank_instagram_dm: fd.get('rank_instagram_dm'),
+                rank_site: fd.get('rank_site'), rank_groupe: fd.get('rank_groupe'),
+                viralite: fd.get('viralite'), nombreAmies: fd.get('nombreAmies'),
+                connaisCreateurs: fd.get('connaisCreateurs'), createursConnus: fd.get('createursConnus'),
+                acheteCreateurs: fd.get('acheteCreateurs'), acheteCreateursNom: fd.get('acheteCreateursNom'),
+                interesse: fd.get('interesse'), pourquoiInteresse: fd.get('pourquoiInteresse'),
+                recontact: fd.get('recontact'), contactInfo: fd.get('contactInfo'),
+                waitlist: fd.get('waitlist'), remise: fd.get('remise'), remiseAutre: fd.get('remiseAutre'),
+                feedbackOuvert: fd.get('feedbackOuvert'),
+                langue: currentLang,
+                timestamp: new Date().toISOString()
+            };
+            console.log('Données:', data);
+            try {
+                await fetch('https://script.google.com/macros/s/AKfycbxKfx7p2V0q36i6PE7SrVPyL1ulYNahz2cOMor9BzEJlxcDX5OaqukZUlcC6v6twyhwhQ/exec', {
+                    method: 'POST', body: JSON.stringify(data)
+                });
+            } catch(err) { console.error('Erreur envoi:', err); }
+            document.getElementById('surveyForm').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+        });
+
+        // Init
+        goToSection(0, true);
+    </script>
+</body>
+</html>
