@@ -554,6 +554,65 @@ select:focus {
     color: var(--text-muted);
 }
 
+/* ── Add-task row ── */
+.add-task-row {
+    display: flex;
+    gap: 10px;
+    padding: 12px 22px;
+    border-top: 1px solid var(--border-soft);
+    background: var(--bg);
+}
+
+.add-task-input {
+    flex: 1;
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    padding: 8px 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.83em;
+    font-weight: 300;
+    background: var(--bg-white);
+    color: var(--ink);
+    outline: none;
+}
+
+.add-task-input:focus { border-color: var(--gold); }
+.add-task-input::placeholder { color: var(--text-muted); }
+
+.add-task-btn {
+    padding: 8px 16px;
+    background: var(--ink);
+    color: var(--gold);
+    border: none;
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72em;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+}
+
+.add-task-btn:hover { opacity: 0.8; }
+
+.task-del {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.78em;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1;
+    transition: color 0.15s;
+}
+
+.task-del:hover { color: var(--red); }
+
 /* ── Responsive ── */
 @media (max-width: 800px) {
     .kpi-grid  { grid-template-columns: 1fr 1fr; }
@@ -595,7 +654,7 @@ select:focus {
         <div class="kpi-grid">
             <div class="kpi-card">
                 <div class="kpi-label">Budget total</div>
-                <div class="kpi-value" id="kpi-budget">— DH</div>
+                <div class="kpi-value" id="kpi-budget">— €</div>
                 <div class="kpi-sub">Budget alloué</div>
             </div>
             <div class="kpi-card">
@@ -605,7 +664,7 @@ select:focus {
             </div>
             <div class="kpi-card">
                 <div class="kpi-label">Restant</div>
-                <div class="kpi-value green" id="kpi-remaining">— DH</div>
+                <div class="kpi-value green" id="kpi-remaining">— €</div>
                 <div class="kpi-sub">Disponible</div>
             </div>
             <div class="kpi-card">
@@ -649,7 +708,7 @@ select:focus {
         <div class="budget-setting">
             <label>Budget total :</label>
             <input type="number" id="budgetInput" placeholder="Ex: 15000" min="0" style="width:150px;">
-            <span style="font-size:0.82em;color:var(--text-muted);">DH</span>
+            <span style="font-size:0.82em;color:var(--text-muted);">€</span>
             <button class="btn" onclick="saveBudget()">Enregistrer</button>
         </div>
 
@@ -676,7 +735,7 @@ select:focus {
                     </select>
                 </div>
                 <div class="form-field">
-                    <label>Montant (DH)</label>
+                    <label>Montant (€)</label>
                     <input type="number" id="expAmount" placeholder="Ex: 1 200" min="0">
                 </div>
                 <div style="padding-bottom:1px;">
@@ -707,7 +766,7 @@ select:focus {
 // ── DONNÉES DÉMARCHES ──────────────────────────────────────────────────────────
 const PHASES = [
     {
-        id: 'fondations', name: 'Phase 1 — Fondations', emoji: '🏗️', duration: 'Mois 1',
+        id: 'fondations', name: 'Phase 1 — Fondations & Juridique', emoji: '🏗️', duration: 'Mois 1',
         tasks: [
             { id: 'f1', text: 'Enregistrer la marque ZAÏF PARIS — OMPIC (Maroc) ou INPI (France)' },
             { id: 'f2', text: 'Choisir et créer le statut juridique (auto-entrepreneur, SARL…)' },
@@ -720,7 +779,26 @@ const PHASES = [
         ]
     },
     {
-        id: 'produit', name: 'Phase 2 — Produit', emoji: '🧣', duration: 'Mois 1–2',
+        id: 'comptes', name: 'Phase 2 — Comptes & Outils', emoji: '💻', duration: 'Mois 1',
+        tasks: [
+            { id: 'ac1',  text: 'Créer le compte Instagram Business @zaifparis (photo de profil, bio, lien)' },
+            { id: 'ac2',  text: 'Créer la Page Facebook ZAÏF PARIS (catégorie : Boutique de vêtements)' },
+            { id: 'ac3',  text: 'Créer le compte TikTok @zaifparis' },
+            { id: 'ac4',  text: 'Créer le compte Pinterest ZAÏF PARIS (épingles produit + lifestyle)' },
+            { id: 'ac5',  text: 'Créer le compte WhatsApp Business (catalogue, message auto, horaires)' },
+            { id: 'ac6',  text: 'Créer l\'adresse email pro : contact@zaifparis.com (Google Workspace ou OVH)' },
+            { id: 'ac7',  text: 'Créer un Linktree ou Beacons pour centraliser tous les liens (bio Instagram)' },
+            { id: 'ac8',  text: 'Ouvrir un compte Meta Business Suite (gestion publicités Facebook / Instagram)' },
+            { id: 'ac9',  text: 'Créer un compte Google Analytics 4 et le connecter au site' },
+            { id: 'ac10', text: 'Créer un compte Mailchimp ou Brevo pour les newsletters et emails clients' },
+            { id: 'ac11', text: 'Créer un compte Canva Pro pour les visuels de la marque' },
+            { id: 'ac12', text: 'Créer un compte Notion ou Trello pour organiser le projet' },
+            { id: 'ac13', text: 'Créer le Google Business Profile (visibilité Maps + recherche locale)' },
+            { id: 'ac14', text: 'Créer un compte Stripe ou Sumeria pour les paiements en ligne' },
+        ]
+    },
+    {
+        id: 'produit', name: 'Phase 3 — Produit', emoji: '🧣', duration: 'Mois 1–2',
         tasks: [
             { id: 'p1', text: 'Identifier et contacter des fournisseurs de tissus qualité (France / Maroc)' },
             { id: 'p2', text: 'Commander des échantillons — minimum 3 à 5 tissus différents' },
@@ -733,7 +811,7 @@ const PHASES = [
         ]
     },
     {
-        id: 'digital', name: 'Phase 3 — Digital & Marketing', emoji: '📱', duration: 'Mois 2',
+        id: 'digital', name: 'Phase 4 — Digital & Site', emoji: '📱', duration: 'Mois 2',
         tasks: [
             { id: 'd1', text: 'Créer le site e-commerce (Shopify / WooCommerce / YouCan)' },
             { id: 'd2', text: 'Configurer le paiement en ligne : CMI, Maroc Pay ou Stripe' },
@@ -746,7 +824,27 @@ const PHASES = [
         ]
     },
     {
-        id: 'lancement', name: 'Phase 4 — Lancement', emoji: '🚀', duration: 'Mois 3',
+        id: 'communication', name: 'Phase 5 — Communication', emoji: '📣', duration: 'Mois 2–3',
+        tasks: [
+            { id: 'com1',  text: 'Définir la ligne éditoriale : ton de voix, valeurs, storytelling ZAÏF PARIS' },
+            { id: 'com2',  text: 'Rédiger les bios sur tous les réseaux (Instagram, Facebook, TikTok, Pinterest)' },
+            { id: 'com3',  text: 'Créer des templates Canva réutilisables aux couleurs ZAÏF PARIS' },
+            { id: 'com4',  text: 'Établir un calendrier éditorial sur 3 mois (posts, stories, reels, emailing)' },
+            { id: 'com5',  text: 'Préparer 20 visuels prêts à publier avant le lancement (photos + carrousels)' },
+            { id: 'com6',  text: 'Filmer 5 à 8 Reels teasers (behind the scenes, déballage, texture tissu)' },
+            { id: 'com7',  text: 'Définir une liste de 25 hashtags principaux (populaires + niche hijab)' },
+            { id: 'com8',  text: 'Créer les story highlights : Produit, Qualité, Valeurs, FAQ, Avis clientes' },
+            { id: 'com9',  text: 'Identifier 10 micro-influenceuses hijab France / Maroc / Belgique' },
+            { id: 'com10', text: 'Envoyer des colis presse à 3 à 5 influenceuses avant le lancement' },
+            { id: 'com11', text: 'Créer l\'email de bienvenue automatique pour les nouvelles abonnées' },
+            { id: 'com12', text: 'Préparer l\'annonce officielle de lancement (visuels + texte + date)' },
+            { id: 'com13', text: 'Planifier les publications du Jour J sur tous les canaux (Instagram, WhatsApp, email)' },
+            { id: 'com14', text: 'Créer un groupe WhatsApp VIP "Premières clientes ZAÏF PARIS"' },
+            { id: 'com15', text: 'Préparer une campagne email de re-lancement 1 semaine après le Jour J' },
+        ]
+    },
+    {
+        id: 'lancement', name: 'Phase 6 — Lancement', emoji: '🚀', duration: 'Mois 3',
         tasks: [
             { id: 'l1', text: 'Tester le parcours commande complet de A à Z (paiement → livraison)' },
             { id: 'l2', text: 'Signer avec un partenaire livraison : Amana, Chronopost Maroc, Colissimo…' },
@@ -758,7 +856,7 @@ const PHASES = [
         ]
     },
     {
-        id: 'croissance', name: 'Phase 5 — Croissance', emoji: '📈', duration: 'Mois 4+',
+        id: 'croissance', name: 'Phase 7 — Croissance', emoji: '📈', duration: 'Mois 4+',
         tasks: [
             { id: 'c1', text: 'Collecter et analyser les retours des premières clientes' },
             { id: 'c2', text: 'Réajuster le stock selon la demande réelle (couleurs, styles)' },
@@ -780,16 +878,18 @@ const CATS = [
 // ── STORAGE ───────────────────────────────────────────────────────────────────
 function load() {
     return {
-        budget:   parseFloat(localStorage.getItem('zaif_budget') || '0'),
-        expenses: JSON.parse(localStorage.getItem('zaif_expenses') || '[]'),
-        tasks:    JSON.parse(localStorage.getItem('zaif_tasks')    || '{}'),
+        budget:      parseFloat(localStorage.getItem('zaif_budget')       || '0'),
+        expenses:    JSON.parse(localStorage.getItem('zaif_expenses')     || '[]'),
+        tasks:       JSON.parse(localStorage.getItem('zaif_tasks')        || '{}'),
+        customTasks: JSON.parse(localStorage.getItem('zaif_custom_tasks') || '[]'),
     };
 }
 
 function save(d) {
-    localStorage.setItem('zaif_budget',   String(d.budget));
-    localStorage.setItem('zaif_expenses', JSON.stringify(d.expenses));
-    localStorage.setItem('zaif_tasks',    JSON.stringify(d.tasks));
+    localStorage.setItem('zaif_budget',       String(d.budget));
+    localStorage.setItem('zaif_expenses',     JSON.stringify(d.expenses));
+    localStorage.setItem('zaif_tasks',        JSON.stringify(d.tasks));
+    localStorage.setItem('zaif_custom_tasks', JSON.stringify(d.customTasks));
     const now = new Date();
     document.getElementById('lastUpdated').textContent =
         'Sauvegardé à ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
@@ -840,6 +940,27 @@ function togglePhase(id) {
     document.getElementById('phase-' + id).classList.toggle('open');
 }
 
+function addCustomTask(phaseId) {
+    const input = document.getElementById('add-task-input-' + phaseId);
+    const text = input.value.trim();
+    if (!text) return;
+    const d = load();
+    d.customTasks.push({ id: 'custom_' + Date.now(), phaseId, text });
+    save(d);
+    input.value = '';
+    render();
+    document.getElementById('phase-' + phaseId).classList.add('open');
+}
+
+function deleteCustomTask(taskId) {
+    if (!confirm('Supprimer cette étape ?')) return;
+    const d = load();
+    d.customTasks = d.customTasks.filter(t => t.id !== taskId);
+    delete d.tasks[taskId];
+    save(d);
+    render();
+}
+
 function resetTasks() {
     if (!confirm('Réinitialiser toutes les étapes complétées ?')) return;
     const d = load();
@@ -857,7 +978,7 @@ function switchTab(name, btn) {
 
 // ── RENDER ────────────────────────────────────────────────────────────────────
 function fmt(n) {
-    return Number(n || 0).toLocaleString('fr-FR') + ' DH';
+    return Number(n || 0).toLocaleString('fr-FR') + ' €';
 }
 
 function fmtDate(iso) {
@@ -869,16 +990,16 @@ function render() {
     const spent    = d.expenses.reduce((s, e) => s + e.amount, 0);
     const rem      = d.budget - spent;
     const budPct   = d.budget > 0 ? Math.min(Math.round(spent / d.budget * 100), 100) : 0;
-    const allTasks = PHASES.flatMap(p => p.tasks);
+    const allTasks = [...PHASES.flatMap(p => p.tasks), ...d.customTasks];
     const done     = allTasks.filter(t => d.tasks[t.id]).length;
     const taskPct  = allTasks.length ? Math.round(done / allTasks.length * 100) : 0;
 
     // ── KPIs ──
-    document.getElementById('kpi-budget').textContent     = d.budget ? fmt(d.budget) : '— DH';
+    document.getElementById('kpi-budget').textContent     = d.budget ? fmt(d.budget) : '— €';
     document.getElementById('kpi-spent').textContent      = fmt(spent);
     document.getElementById('kpi-spent-pct').textContent  = d.budget ? budPct + '% du budget' : '—';
     const remEl = document.getElementById('kpi-remaining');
-    remEl.textContent = d.budget ? fmt(rem) : '— DH';
+    remEl.textContent = d.budget ? fmt(rem) : '— €';
     remEl.className   = 'kpi-value ' + (rem < 0 ? 'red' : 'green');
     document.getElementById('kpi-pct').textContent        = taskPct + '%';
     document.getElementById('kpi-tasks-count').textContent = done + ' / ' + allTasks.length + ' étapes';
@@ -947,18 +1068,32 @@ function buildTable(list, canDelete) {
 
 function renderPhases(d) {
     document.getElementById('phases-container').innerHTML = PHASES.map(phase => {
-        const doneN  = phase.tasks.filter(t => d.tasks[t.id]).length;
-        const total  = phase.tasks.length;
+        const phaseCust    = d.customTasks.filter(t => t.phaseId === phase.id);
+        const allPhaseTasks = [...phase.tasks, ...phaseCust];
+        const doneN  = allPhaseTasks.filter(t => d.tasks[t.id]).length;
+        const total  = allPhaseTasks.length;
         const pct    = total ? Math.round(doneN / total * 100) : 0;
-        const full   = doneN === total;
+        const full   = doneN === total && total > 0;
 
-        const tasks = phase.tasks.map(t => {
-            const ok = !!d.tasks[t.id];
+        const tasks = allPhaseTasks.map(t => {
+            const ok       = !!d.tasks[t.id];
+            const isCustom = t.id.startsWith('custom_');
+            const delBtn   = isCustom
+                ? `<button class="task-del" onclick="event.stopPropagation();deleteCustomTask('${t.id}')" title="Supprimer">✕</button>`
+                : '';
             return `<div class="task-item ${ok ? 'done' : ''}" onclick="toggleTask('${t.id}')">
                 <div class="task-box">✓</div>
                 <div class="task-text">${t.text}</div>
+                ${delBtn}
             </div>`;
         }).join('');
+
+        const addForm = `<div class="add-task-row">
+            <input class="add-task-input" id="add-task-input-${phase.id}"
+                placeholder="Ajouter une étape personnalisée…"
+                onkeydown="if(event.key==='Enter')addCustomTask('${phase.id}')">
+            <button class="add-task-btn" onclick="addCustomTask('${phase.id}')">+ Ajouter</button>
+        </div>`;
 
         return `<div class="phase-card" id="phase-${phase.id}">
             <div class="phase-header" onclick="togglePhase('${phase.id}')">
@@ -977,7 +1112,7 @@ function renderPhases(d) {
                     <span class="chevron">▼</span>
                 </div>
             </div>
-            <div class="phase-tasks">${tasks}</div>
+            <div class="phase-tasks">${tasks}${addForm}</div>
         </div>`;
     }).join('');
 }
