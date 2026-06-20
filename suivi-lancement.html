@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAÏF PARIS — Suivi Lancement</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600&family=Jost:wght@300;400;500;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --gold:        #D8C29D;
+    --gold-dark:   #B7A89A;
+    --ink:         #111111;
+    --bg:          #F6F1E9;
+    --bg-light:    #EEE8E1;
+    --bg-white:    #FDFCF9;
+    --text:        #111111;
+    --text-muted:  #8a7f75;
+    --border:      #D8C29D;
+    --border-soft: #E8E2D9;
+    --green:       #6B8F71;
+    --red:         #B87B5E;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 300;
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+.header {
+    background: var(--ink);
+    color: white;
+    padding: 22px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9em;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    line-height: 1;
+}
+
+.brand-sub {
+    font-size: 0.65em;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+#lastUpdated {
+    font-size: 0.68em;
+    color: var(--gold-dark);
+    letter-spacing: 0.08em;
+}
+
+/* ── Nav ── */
+.nav {
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    padding: 0 36px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(17,17,17,0.04);
+}
+
+.nav-btn {
+    padding: 16px 26px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72em;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.nav-btn.active  { color: var(--ink); border-bottom-color: var(--gold); }
+.nav-btn:hover:not(.active) { color: var(--ink); }
+
+/* ── Main ── */
+.main {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── KPI grid ── */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.kpi-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    padding: 22px 20px;
+    border-radius: 2px;
+}
+
+.kpi-label {
+    font-size: 0.63em;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.kpi-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+}
+
+.kpi-value.green { color: var(--green); }
+.kpi-value.red   { color: var(--red); }
+
+.kpi-sub {
+    font-size: 0.7em;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* ── Bar card ── */
+.bar-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    padding: 18px 22px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+}
+
+.bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.bar-label {
+    font-size: 0.65em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.bar-value {
+    font-size: 0.75em;
+    color: var(--text-muted);
+}
+
+.bar-bg {
+    height: 5px;
+    background: var(--bg-light);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.bar-fill.budget  { background: var(--gold); }
+.bar-fill.tasks   { background: var(--green); }
+.bar-fill.over    { background: var(--red); }
+
+/* ── Section title ── */
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45em;
+    font-weight: 400;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-soft);
+    margin-top: 36px;
+}
+
+.section-title:first-child { margin-top: 0; }
+
+/* ── Budget setting ── */
+.budget-setting {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    padding: 18px 22px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.budget-setting label {
+    font-size: 0.72em;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ── Form inputs ── */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9em;
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 300;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--bg-white);
+}
+
+/* ── Expense form ── */
+.expense-form {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    padding: 26px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1.4fr 1fr auto;
+    gap: 12px;
+    align-items: end;
+}
+
+.form-field label {
+    display: block;
+    font-size: 0.62em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+}
+
+.form-field input,
+.form-field select {
+    width: 100%;
+}
+
+/* ── Buttons ── */
+.btn {
+    background: var(--ink);
+    color: var(--bg-light);
+    border: none;
+    padding: 10px 22px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72em;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn:hover { background: #2a2a2a; }
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+    padding: 8px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68em;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--gold-dark); color: var(--ink); }
+
+/* ── Expense table ── */
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.expense-table th {
+    text-align: left;
+    font-size: 0.62em;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-white);
+}
+
+.expense-table td {
+    padding: 13px 16px;
+    font-size: 0.88em;
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--bg-white);
+}
+
+.expense-table tbody tr:last-child td { border-bottom: none; }
+.expense-table tbody tr:hover td { background: var(--bg); }
+
+.amount-cell {
+    font-weight: 500;
+    color: var(--red);
+    font-variant-numeric: tabular-nums;
+}
+
+.cat-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: 20px;
+    font-size: 0.82em;
+    color: var(--text-muted);
+}
+
+.btn-del {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: all 0.15s;
+}
+
+.btn-del:hover { background: #fdf3ee; color: var(--red); }
+
+/* ── Empty state ── */
+.empty-state {
+    text-align: center;
+    padding: 52px 24px;
+    color: var(--text-muted);
+    font-size: 0.88em;
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    line-height: 2;
+}
+
+/* ── Category summary ── */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.cat-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    padding: 16px 18px;
+    border-radius: 2px;
+}
+
+.cat-name {
+    font-size: 0.65em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.cat-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: var(--ink);
+}
+
+/* ── Phase cards ── */
+.phase-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-soft);
+    border-radius: 2px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.phase-header {
+    padding: 16px 22px;
+    border-bottom: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+}
+
+.phase-header:hover { background: var(--bg); }
+.phase-card.open .phase-header { border-bottom-color: var(--border-soft); }
+
+.phase-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.phase-emoji { font-size: 1.15em; }
+
+.phase-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.phase-duration {
+    font-size: 0.68em;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-left: 6px;
+}
+
+.phase-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.phase-count {
+    font-size: 0.72em;
+    color: var(--text-muted);
+    font-weight: 500;
+    min-width: 36px;
+    text-align: right;
+}
+
+.mini-bar {
+    width: 72px;
+    height: 3px;
+    background: var(--bg-light);
+    border-radius: 2px;
+}
+
+.mini-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.4s;
+}
+
+.mini-fill.complete { background: var(--green); }
+
+.chevron {
+    font-size: 0.72em;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    margin-left: 4px;
+}
+
+.phase-card.open .chevron { transform: rotate(180deg); }
+
+.phase-tasks { display: none; }
+.phase-card.open .phase-tasks { display: block; }
+
+/* ── Task items ── */
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 13px 22px;
+    cursor: pointer;
+    transition: background 0.12s;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.task-item:last-child { border-bottom: none; }
+.task-item:hover { background: var(--bg); }
+
+.task-box {
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    transition: all 0.2s;
+    color: transparent;
+}
+
+.task-item.done .task-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+}
+
+.task-text {
+    font-size: 0.88em;
+    font-weight: 300;
+    line-height: 1.55;
+    flex: 1;
+}
+
+.task-item.done .task-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+    .kpi-grid  { grid-template-columns: 1fr 1fr; }
+    .form-row  { grid-template-columns: 1fr 1fr; }
+    .header    { padding: 16px 20px; }
+    .nav       { padding: 0 12px; }
+    .main      { padding: 24px 16px 60px; }
+}
+
+@media (max-width: 500px) {
+    .kpi-grid  { grid-template-columns: 1fr 1fr; }
+    .form-row  { grid-template-columns: 1fr; }
+    .brand-name { font-size: 1.4em; }
+    .nav-btn   { padding: 14px 14px; font-size: 0.65em; letter-spacing: 0.12em; }
+}
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <div class="brand-name">ZAÏF PARIS</div>
+        <div class="brand-sub">Suivi de lancement</div>
+    </div>
+    <div id="lastUpdated"></div>
+</div>
+
+<nav class="nav">
+    <button class="nav-btn active"  onclick="switchTab('dashboard', this)">Dashboard</button>
+    <button class="nav-btn"         onclick="switchTab('depenses',  this)">Dépenses</button>
+    <button class="nav-btn"         onclick="switchTab('demarches', this)">Démarches</button>
+</nav>
+
+<div class="main">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div class="tab-panel active" id="tab-dashboard">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Budget total</div>
+                <div class="kpi-value" id="kpi-budget">— DH</div>
+                <div class="kpi-sub">Budget alloué</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Dépensé</div>
+                <div class="kpi-value red" id="kpi-spent">0 DH</div>
+                <div class="kpi-sub" id="kpi-spent-pct">—</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Restant</div>
+                <div class="kpi-value green" id="kpi-remaining">— DH</div>
+                <div class="kpi-sub">Disponible</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Avancement</div>
+                <div class="kpi-value" id="kpi-pct">0%</div>
+                <div class="kpi-sub" id="kpi-tasks-count">0 / 0 étapes</div>
+            </div>
+        </div>
+
+        <div class="bar-card">
+            <div class="bar-header">
+                <span class="bar-label">Consommation budget</span>
+                <span class="bar-value" id="bar-budget-label">—</span>
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill budget" id="bar-budget" style="width:0%"></div>
+            </div>
+        </div>
+
+        <div class="bar-card">
+            <div class="bar-header">
+                <span class="bar-label">Avancement global des démarches</span>
+                <span class="bar-value" id="bar-tasks-label">0 / 0 étapes complétées</span>
+            </div>
+            <div class="bar-bg">
+                <div class="bar-fill tasks" id="bar-tasks" style="width:0%"></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Par catégorie</h2>
+        <div class="cat-grid" id="dash-cats"></div>
+
+        <h2 class="section-title">Dernières dépenses</h2>
+        <div id="dash-recent"></div>
+
+    </div>
+
+    <!-- ══ DÉPENSES ══ -->
+    <div class="tab-panel" id="tab-depenses">
+
+        <div class="budget-setting">
+            <label>Budget total :</label>
+            <input type="number" id="budgetInput" placeholder="Ex: 15000" min="0" style="width:150px;">
+            <span style="font-size:0.82em;color:var(--text-muted);">DH</span>
+            <button class="btn" onclick="saveBudget()">Enregistrer</button>
+        </div>
+
+        <div class="expense-form">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2em;font-weight:500;margin-bottom:18px;color:var(--ink);">
+                Ajouter une dépense
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Description</label>
+                    <input type="text" id="expDesc" placeholder="Ex: Commande tissu soie">
+                </div>
+                <div class="form-field">
+                    <label>Catégorie</label>
+                    <select id="expCat">
+                        <option>Matières premières</option>
+                        <option>Packaging</option>
+                        <option>Identité visuelle &amp; Photo</option>
+                        <option>Juridique &amp; Admin</option>
+                        <option>Site web &amp; Tech</option>
+                        <option>Marketing &amp; Pub</option>
+                        <option>Logistique &amp; Livraison</option>
+                        <option>Divers</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Montant (DH)</label>
+                    <input type="number" id="expAmount" placeholder="Ex: 1 200" min="0">
+                </div>
+                <div style="padding-bottom:1px;">
+                    <button class="btn" onclick="addExpense()">+ Ajouter</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Toutes les dépenses</h2>
+        <div id="all-expenses"></div>
+
+    </div>
+
+    <!-- ══ DÉMARCHES ══ -->
+    <div class="tab-panel" id="tab-demarches">
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+            <p style="font-size:0.83em;color:var(--text-muted);">Clique sur une étape pour la cocher. Clique sur une phase pour l'ouvrir.</p>
+            <button class="btn-ghost" onclick="resetTasks()">Réinitialiser tout</button>
+        </div>
+        <div id="phases-container"></div>
+
+    </div>
+
+</div>
+
+<script>
+// ── DONNÉES DÉMARCHES ──────────────────────────────────────────────────────────
+const PHASES = [
+    {
+        id: 'fondations', name: 'Phase 1 — Fondations', emoji: '🏗️', duration: 'Mois 1',
+        tasks: [
+            { id: 'f1', text: 'Enregistrer la marque ZAÏF PARIS — OMPIC (Maroc) ou INPI (France)' },
+            { id: 'f2', text: 'Choisir et créer le statut juridique (auto-entrepreneur, SARL…)' },
+            { id: 'f3', text: 'Ouvrir un compte bancaire professionnel dédié à la marque' },
+            { id: 'f4', text: 'Définir le budget total de lancement et les lignes de dépenses' },
+            { id: 'f5', text: 'Créer le logo et la charte graphique complète (couleurs, typos)' },
+            { id: 'f6', text: 'Réserver le nom de domaine (ex : zaifparis.com / .ma)' },
+            { id: 'f7', text: 'Créer le compte Instagram Business @zaifparis' },
+            { id: 'f8', text: 'Créer le compte WhatsApp Business avec catalogue produit' },
+        ]
+    },
+    {
+        id: 'produit', name: 'Phase 2 — Produit', emoji: '🧣', duration: 'Mois 1–2',
+        tasks: [
+            { id: 'p1', text: 'Identifier et contacter des fournisseurs de tissus qualité (France / Maroc)' },
+            { id: 'p2', text: 'Commander des échantillons — minimum 3 à 5 tissus différents' },
+            { id: 'p3', text: 'Tester la qualité : lavage, durabilité, tenue des couleurs, odeur' },
+            { id: 'p4', text: 'Sélectionner la gamme de lancement (couleurs, styles, longueurs)' },
+            { id: 'p5', text: 'Passer la commande du premier stock de lancement' },
+            { id: 'p6', text: 'Créer le packaging : boîtes, étiquettes, pochettes tissu, carte merci' },
+            { id: 'p7', text: 'Organiser une session photo produit professionnelle' },
+            { id: 'p8', text: 'Filmer des vidéos unboxing et texture pour les réseaux sociaux' },
+        ]
+    },
+    {
+        id: 'digital', name: 'Phase 3 — Digital & Marketing', emoji: '📱', duration: 'Mois 2',
+        tasks: [
+            { id: 'd1', text: 'Créer le site e-commerce (Shopify / WooCommerce / YouCan)' },
+            { id: 'd2', text: 'Configurer le paiement en ligne : CMI, Maroc Pay ou Stripe' },
+            { id: 'd3', text: 'Rédiger les fiches produits en français et en arabe' },
+            { id: 'd4', text: 'Préparer au minimum 15 posts Instagram avant le jour J' },
+            { id: 'd5', text: 'Créer les story highlights : produit, qualité, valeurs, FAQ' },
+            { id: 'd6', text: 'Identifier 5 à 10 micro-influenceurs Maroc / France (hijab, mode)' },
+            { id: 'd7', text: 'Envoyer des produits aux influenceurs sélectionnés pour test' },
+            { id: 'd8', text: 'Configurer Google Analytics et Meta Pixel sur le site' },
+        ]
+    },
+    {
+        id: 'lancement', name: 'Phase 4 — Lancement', emoji: '🚀', duration: 'Mois 3',
+        tasks: [
+            { id: 'l1', text: 'Tester le parcours commande complet de A à Z (paiement → livraison)' },
+            { id: 'l2', text: 'Signer avec un partenaire livraison : Amana, Chronopost Maroc, Colissimo…' },
+            { id: 'l3', text: 'Contacter la liste d\'attente collectée via le questionnaire' },
+            { id: 'l4', text: 'Annoncer la date de lancement sur Instagram (compte à rebours)' },
+            { id: 'l5', text: 'Mettre en ligne officielle la première collection' },
+            { id: 'l6', text: 'Publier sur tous les canaux : Instagram, WhatsApp, TikTok, Facebook' },
+            { id: 'l7', text: 'Traiter les premières commandes sous 24h et envoyer un message de suivi' },
+        ]
+    },
+    {
+        id: 'croissance', name: 'Phase 5 — Croissance', emoji: '📈', duration: 'Mois 4+',
+        tasks: [
+            { id: 'c1', text: 'Collecter et analyser les retours des premières clientes' },
+            { id: 'c2', text: 'Réajuster le stock selon la demande réelle (couleurs, styles)' },
+            { id: 'c3', text: 'Lancer un programme de parrainage (code promo par cliente)' },
+            { id: 'c4', text: 'Planifier la collection 2 : nouveaux coloris, nouvelles matières' },
+            { id: 'c5', text: 'Lancer les premières publicités payantes Instagram / Facebook Ads' },
+            { id: 'c6', text: 'Demander des avis Google / Trustpilot aux clientes satisfaites' },
+            { id: 'c7', text: 'Explorer un pop-up store, un marché ou un dépôt-vente boutique' },
+        ]
+    }
+];
+
+const CATS = [
+    'Matières premières','Packaging','Identité visuelle & Photo',
+    'Juridique & Admin','Site web & Tech','Marketing & Pub',
+    'Logistique & Livraison','Divers'
+];
+
+// ── STORAGE ───────────────────────────────────────────────────────────────────
+function load() {
+    return {
+        budget:   parseFloat(localStorage.getItem('zaif_budget') || '0'),
+        expenses: JSON.parse(localStorage.getItem('zaif_expenses') || '[]'),
+        tasks:    JSON.parse(localStorage.getItem('zaif_tasks')    || '{}'),
+    };
+}
+
+function save(d) {
+    localStorage.setItem('zaif_budget',   String(d.budget));
+    localStorage.setItem('zaif_expenses', JSON.stringify(d.expenses));
+    localStorage.setItem('zaif_tasks',    JSON.stringify(d.tasks));
+    const now = new Date();
+    document.getElementById('lastUpdated').textContent =
+        'Sauvegardé à ' + now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
+function saveBudget() {
+    const v = parseFloat(document.getElementById('budgetInput').value);
+    if (isNaN(v) || v < 0) return;
+    const d = load();
+    d.budget = v;
+    save(d);
+    render();
+}
+
+function addExpense() {
+    const desc   = document.getElementById('expDesc').value.trim();
+    const cat    = document.getElementById('expCat').value;
+    const amount = parseFloat(document.getElementById('expAmount').value);
+    if (!desc || isNaN(amount) || amount <= 0) {
+        alert('Merci de remplir la description et le montant.');
+        return;
+    }
+    const d = load();
+    d.expenses.push({ id: Date.now(), desc, cat, amount, date: new Date().toISOString() });
+    save(d);
+    document.getElementById('expDesc').value   = '';
+    document.getElementById('expAmount').value = '';
+    render();
+}
+
+function deleteExpense(id) {
+    if (!confirm('Supprimer cette dépense ?')) return;
+    const d = load();
+    d.expenses = d.expenses.filter(e => e.id !== id);
+    save(d);
+    render();
+}
+
+function toggleTask(taskId) {
+    const d = load();
+    d.tasks[taskId] = !d.tasks[taskId];
+    save(d);
+    render();
+}
+
+function togglePhase(id) {
+    document.getElementById('phase-' + id).classList.toggle('open');
+}
+
+function resetTasks() {
+    if (!confirm('Réinitialiser toutes les étapes complétées ?')) return;
+    const d = load();
+    d.tasks = {};
+    save(d);
+    render();
+}
+
+function switchTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function fmt(n) {
+    return Number(n || 0).toLocaleString('fr-FR') + ' DH';
+}
+
+function fmtDate(iso) {
+    return new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function render() {
+    const d = load();
+    const spent    = d.expenses.reduce((s, e) => s + e.amount, 0);
+    const rem      = d.budget - spent;
+    const budPct   = d.budget > 0 ? Math.min(Math.round(spent / d.budget * 100), 100) : 0;
+    const allTasks = PHASES.flatMap(p => p.tasks);
+    const done     = allTasks.filter(t => d.tasks[t.id]).length;
+    const taskPct  = allTasks.length ? Math.round(done / allTasks.length * 100) : 0;
+
+    // ── KPIs ──
+    document.getElementById('kpi-budget').textContent     = d.budget ? fmt(d.budget) : '— DH';
+    document.getElementById('kpi-spent').textContent      = fmt(spent);
+    document.getElementById('kpi-spent-pct').textContent  = d.budget ? budPct + '% du budget' : '—';
+    const remEl = document.getElementById('kpi-remaining');
+    remEl.textContent = d.budget ? fmt(rem) : '— DH';
+    remEl.className   = 'kpi-value ' + (rem < 0 ? 'red' : 'green');
+    document.getElementById('kpi-pct').textContent        = taskPct + '%';
+    document.getElementById('kpi-tasks-count').textContent = done + ' / ' + allTasks.length + ' étapes';
+
+    // ── Progress bars ──
+    document.getElementById('bar-budget-label').textContent = d.budget ? fmt(spent) + ' / ' + fmt(d.budget) : '—';
+    const bb = document.getElementById('bar-budget');
+    bb.style.width  = budPct + '%';
+    bb.className    = 'bar-fill ' + (budPct >= 100 ? 'over' : 'budget');
+    document.getElementById('bar-tasks-label').textContent = done + ' / ' + allTasks.length + ' étapes complétées';
+    document.getElementById('bar-tasks').style.width       = taskPct + '%';
+
+    // ── Budget input sync ──
+    if (d.budget) document.getElementById('budgetInput').value = d.budget;
+
+    // ── Category summary ──
+    const catTotals = {};
+    CATS.forEach(c => { catTotals[c] = 0; });
+    d.expenses.forEach(e => { catTotals[e.cat] = (catTotals[e.cat] || 0) + e.amount; });
+    const activeCats = CATS.filter(c => catTotals[c] > 0);
+    document.getElementById('dash-cats').innerHTML = activeCats.length
+        ? activeCats.map(c => `
+            <div class="cat-card">
+                <div class="cat-name">${c}</div>
+                <div class="cat-amount">${fmt(catTotals[c])}</div>
+            </div>`).join('')
+        : '<p style="color:var(--text-muted);font-size:0.85em;grid-column:1/-1;">Aucune dépense enregistrée.</p>';
+
+    // ── Recent expenses (dashboard) ──
+    const recent = [...d.expenses].sort((a, b) => b.id - a.id).slice(0, 5);
+    document.getElementById('dash-recent').innerHTML = recent.length
+        ? buildTable(recent, false)
+        : '<div class="empty-state">Aucune dépense enregistrée.</div>';
+
+    // ── All expenses ──
+    const all = [...d.expenses].sort((a, b) => b.id - a.id);
+    document.getElementById('all-expenses').innerHTML = all.length
+        ? buildTable(all, true)
+        : '<div class="empty-state">Aucune dépense pour l\'instant.<br>Ajoute ta première dépense ci-dessus.</div>';
+
+    // ── Phases ──
+    renderPhases(d);
+}
+
+function buildTable(list, canDelete) {
+    const rows = list.map(e => `
+        <tr>
+            <td>${fmtDate(e.date)}</td>
+            <td>${e.desc}</td>
+            <td><span class="cat-badge">${e.cat}</span></td>
+            <td class="amount-cell">${fmt(e.amount)}</td>
+            <td>${canDelete ? `<button class="btn-del" onclick="deleteExpense(${e.id})">✕</button>` : ''}</td>
+        </tr>`).join('');
+
+    return `<table class="expense-table">
+        <thead><tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Catégorie</th>
+            <th>Montant</th>
+            <th></th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function renderPhases(d) {
+    document.getElementById('phases-container').innerHTML = PHASES.map(phase => {
+        const doneN  = phase.tasks.filter(t => d.tasks[t.id]).length;
+        const total  = phase.tasks.length;
+        const pct    = total ? Math.round(doneN / total * 100) : 0;
+        const full   = doneN === total;
+
+        const tasks = phase.tasks.map(t => {
+            const ok = !!d.tasks[t.id];
+            return `<div class="task-item ${ok ? 'done' : ''}" onclick="toggleTask('${t.id}')">
+                <div class="task-box">✓</div>
+                <div class="task-text">${t.text}</div>
+            </div>`;
+        }).join('');
+
+        return `<div class="phase-card" id="phase-${phase.id}">
+            <div class="phase-header" onclick="togglePhase('${phase.id}')">
+                <div class="phase-left">
+                    <span class="phase-emoji">${phase.emoji}</span>
+                    <div>
+                        <span class="phase-name">${phase.name}</span>
+                        <span class="phase-duration">— ${phase.duration}</span>
+                    </div>
+                </div>
+                <div class="phase-right">
+                    <span class="phase-count">${doneN}/${total}</span>
+                    <div class="mini-bar">
+                        <div class="mini-fill ${full ? 'complete' : ''}" style="width:${pct}%"></div>
+                    </div>
+                    <span class="chevron">▼</span>
+                </div>
+            </div>
+            <div class="phase-tasks">${tasks}</div>
+        </div>`;
+    }).join('');
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
